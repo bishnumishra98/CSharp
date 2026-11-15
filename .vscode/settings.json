@@ -1,0 +1,10 @@
+{
+    // Code Runner: run the current .cs file as a .NET 10 file-based app (no .csproj)
+    "code-runner.executorMap": {
+        "csharp": "dotnet run $fullFileName"
+    },
+    // Run in the integrated terminal so Console.ReadLine() input works
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.clearPreviousOutput": true
+}
