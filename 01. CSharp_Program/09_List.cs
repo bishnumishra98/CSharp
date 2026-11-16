@@ -2,8 +2,6 @@
 //         List<T> class is part of the System.Collections.Generic namespace and allows you to store a list of objects of type T.
 //         Lists are zero-indexed, similar to arrays.
 
-// ● Common operations on List<T> include adding, removing, and accessing elements, as well as iterating through the list.
-
 // ● Ways to declare and initialize a List<T> in C#:
 //   - Using the default constructor:
 //	   List<int> numbers = new List<int>();   // declares an empty list of integers

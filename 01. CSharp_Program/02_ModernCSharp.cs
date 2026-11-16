@@ -10,4 +10,16 @@
 Console.WriteLine("Namaste Duniya1");
 Console.Write("Namaste Duniya2");
 Console.Write("Namaste Duniya3");
-Console.Write("\nNamaste Duniya4\nNamaste Duniya5");
+Console.Write("\nNamaste Duniya4\nNamaste Duniya5\n");
+
+
+// ● How to take console input in C# ?
+
+string userInput = Console.ReadLine();
+Console.WriteLine("You entered: " + userInput);
+
+int num = int.Parse(Console.ReadLine());
+Console.WriteLine("You entered the number: " + num);
+
+double decimalNum = double.Parse(Console.ReadLine());
+Console.WriteLine("You entered the decimal number: " + decimalNum);
