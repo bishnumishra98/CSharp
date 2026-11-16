@@ -66,3 +66,20 @@ void DisplayValue(in int a, in int b)
 
 int num5 = 50, num6 = 75;
 DisplayValue(in num5, in num6);   // o/p: "Inside DisplayValue: a = 50, b = 75"
+
+
+// ● Example of a method that takes all types of reference parameters (ref, out, in) and a value parameter, and returns their sum
+//   Return type is 'int', because the method returns the sum of all parameters, which is an integer value.
+int CalculateSum(int valueParam, ref int refValueParam, out int outValueParam, in int inValueParam)
+{
+	outValueParam = 30;   // assigning a value to the out parameter
+	return valueParam + refValueParam + outValueParam + inValueParam;
+}
+
+int value = 10;
+int refValue = 20;
+int outValue;
+int inValue = 30;
+int sum = CalculateSum(value, ref refValue, out outValue, in inValue);
+Console.WriteLine("The sum is: " + sum);   // o/p: "The sum is: 90"
+Console.WriteLine("The outValue is: " + outValue);   // o/p: "The outValue is: 30"
