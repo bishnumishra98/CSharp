@@ -86,6 +86,8 @@ class ElectricEngine : IEngine
 // Step 3: Inject dependency (Constructor Injection)
 class Car
 {
+	// readonly: Can be set only here or in the constructor. After that, it can't be changed.
+	//           So once a Car gets its engine, nobody can swap it by mistake. (see 02_FieldsAndMethods.cs)
 	private readonly IEngine _engine;   // _ (underscore) is a common naming style for private fields in C#
 
 	public Car(IEngine engine)          // Engine comes from outside
