@@ -13,6 +13,9 @@
 //                       It can be written only inside an abstract class.
 //
 // ● An abstract class can still have normal methods, fields and constructors. Only abstract methods have no body.
+//   In simple terms, an abstract class is a restricted base class that cannot be instantiated directly. It acts as a partial
+//   blueprint for other classes, allowing you to define shared code while forcing derived subclasses to implement specific,
+//   incomplete behaviors.
 
 // ● abstract method vs virtual method:
 //                abstract method       virtual method (09_MethodOverriding.cs)
