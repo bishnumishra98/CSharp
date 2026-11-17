@@ -6,6 +6,9 @@
 //             I.  get: runs when you read the value.   e.g., Console.WriteLine(p.Age);
 //             II. set: runs when you assign a value.  e.g., p.Age = 20;
 //                      'value' keyword holds the value being assigned (20 here).
+//
+//             In simple terms, Properties are class members that provide a flexible mechanism to read, write, or compute
+//             the values of private fields.
 
 // ● Types of properties:
 //   1. Full Property: A private field + get/set. Use it when you want to check the value before saving it.
