@@ -1,3 +1,7 @@
+// ● What are Generics ?
+//   Generics in C# are a feature that lets you write reusable, type-safe classes, interfaces, methods, and delegates
+//   using placeholder data types.
+
 // ● Problem: We want a Box class that can store one item of any type: int, string, double...
 //   Option 1: Write IntBox, StringBox, DoubleBox... The same code is repeated for every type.
 //   Option 2: Use the 'object' type, because it can store anything. But:
