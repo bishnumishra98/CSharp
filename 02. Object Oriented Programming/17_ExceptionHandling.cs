@@ -18,6 +18,10 @@
 // ● Custom Exception: You can make your own exception by inheriting the Exception class.
 //                     e.g., InsufficientBalanceException tells the exact problem better than a general error.
 
+// ● Why inherit Exception ?
+//   'throw' and 'catch' work only with objects of the Exception class (or its children).
+//   So your custom exception class MUST inherit Exception. Otherwise, you can't throw or catch it.
+
 
 // Custom exception
 class InsufficientBalanceException : Exception
