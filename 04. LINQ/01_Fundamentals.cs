@@ -88,6 +88,9 @@ using System.Linq;   // for all LINQ methods: Where, Select, OrderBy, Count, Fir
 // Employee is a Data model (or entity) representing an employee record
 class Employee
 {
+	// EmployeeId, EmployeeName, etc., are properties (auto-properties: { get; set; } means we can read and write them).
+	// Each property is like a column in the data table above, and each Employee object is like one row.
+	// int? means ManagerId can also be null (an employee with no manager).
 	public int EmployeeId { get; set; }
 	public string EmployeeName { get; set; } = "";
 	public decimal Salary { get; set; }
