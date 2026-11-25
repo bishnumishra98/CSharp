@@ -15,6 +15,7 @@
 
 using System;
 using System.Text;
+using System.Linq;   // for Reverse() and ToArray() used in Reverse_LINQ
 
 public class Solution
 {
@@ -93,6 +94,21 @@ public class Solution
 		Array.Reverse(arr);
 		return new string(arr);
 	}
+
+// ------------------------------------------------------------------------------
+
+	// LINQ way: A string is IEnumerable<char> (a sequence of characters), so LINQ methods work on it.
+	// 1. str.Reverse() gives the characters in reverse order: 'o', 'l', 'l', 'e', 'H' (as IEnumerable<char>, not a string).
+	// 2. ToArray() converts them into a char array.
+	// 3. new string(...) converts the char array back to a string.
+	// Shortcoming: Shortest code, but a bit slower than the others because LINQ first copies all items into a buffer
+	//              and then gives them back one by one.
+	// T.C: O(n)
+	// S.C: O(n)
+	public string Reverse_LINQ(string str)
+	{
+		return new string(str.Reverse().ToArray());
+	}
 }
 
 
@@ -106,7 +122,7 @@ class Program
 		// string ans = new Solution().Reverse_StringBuilder(str);
 		string ans = new Solution().Reverse(str);
 		// string ans = new Solution().Reverse_BuiltIn(str);
-		
+		// string ans = new Solution().Reverse_LINQ(str);
 
 		Console.WriteLine(ans);   // o/p: "olleH"
 	}
