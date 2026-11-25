@@ -67,8 +67,8 @@
 //   Departments: 1 IT, 2 HR, 3 Finance, 4 Marketing (Marketing has no employee)
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Collections.Generic;   // for List<T>, Dictionary<TKey, TValue> and IEnumerable<T> (the type LINQ results are)
+using System.Linq;   // for all LINQ methods: Where, Select, OrderBy, Count, First... (without it, list.Where(...) gives an error)
 
 class Employee
 {
