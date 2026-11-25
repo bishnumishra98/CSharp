@@ -51,6 +51,18 @@
 //   - Many methods (Count, Sum, First, Take, Distinct...) exist only in method syntax.
 //     That's why method syntax is used more in real projects. Query syntax is easier to read for joins (see 06_Joins.cs).
 
+// ● IEnumerable<T>: An interface that simply means "my items can be read one by one" (i.e., you can run foreach on me).
+//   - Array, List<T>, Dictionary, HashSet, string... all implement IEnumerable<T>. That's why LINQ works on all of them.
+//   - It is the most basic collection type. It can ONLY go through items one by one, from start to end.
+//     No Add(), no Remove(), no index [i], no .Count property.
+//        IEnumerable<int> nums = new List<int> { 1, 2, 3 };
+//        foreach (int n in nums) Console.Write(n);   // OK. o/p: "123"
+//        nums.Add(4);                                // Error: IEnumerable has no Add()
+//        Console.WriteLine(nums[0]);                 // Error: IEnumerable has no index
+//   - Need Add / index? Convert it: List<int> list = nums.ToList();
+//   - Why does LINQ give back IEnumerable<T> and not List<T>? Because LINQ does not run the query right away.
+//     It gives back a "recipe" that runs only when you loop on it (deferred execution, see 08_LINQWithEFCore.cs).
+
 // ● NOTE:
 //   - LINQ never changes the original collection. It always gives back a new result.
 //   - The result is usually IEnumerable<T>. Use ToList() or ToArray() to store it as a List or array.
