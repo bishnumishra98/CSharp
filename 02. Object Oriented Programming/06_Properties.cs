@@ -61,7 +61,8 @@ class Person
 	// 3. Read-only from outside
 	public int Id { get; private set; }
 
-	// 4. init property
+	// 4. init property. 'init' means the value can be set only while creating the object (in the constructor or in
+	//    { } after new), and never after that. Good for things that should not change, like an Aadhar number.
 	public string AadharNumber { get; init; } = "";
 
 	// 5. Computed property
@@ -70,6 +71,7 @@ class Person
 		get { return age >= 18; }
 	}
 
+	// Constructor: sets Id. Since Id has a private set, only code inside this class (like this constructor) can set it.
 	public Person(int id)
 	{
 		Id = id;
