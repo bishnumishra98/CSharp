@@ -104,8 +104,9 @@ class Program
 
 		// string ans = new Solution().Reverse_Naive(str);
 		// string ans = new Solution().Reverse_StringBuilder(str);
-		// string ans = new Solution().Reverse_BuiltIn(str);
 		string ans = new Solution().Reverse(str);
+		// string ans = new Solution().Reverse_BuiltIn(str);
+		
 
 		Console.WriteLine(ans);   // o/p: "olleH"
 	}
