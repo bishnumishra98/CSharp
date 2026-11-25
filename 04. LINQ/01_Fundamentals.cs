@@ -52,6 +52,7 @@
 //     That's why method syntax is used more in real projects. Query syntax is easier to read for joins (see 06_Joins.cs).
 
 // ● IEnumerable<T>: An interface that simply means "my items can be read one by one" (i.e., you can run foreach on me).
+//                   This interface allows you to iterate through a sequence of elements one at a time.
 //   - Array, List<T>, Dictionary, HashSet, string... all implement IEnumerable<T>. That's why LINQ works on all of them.
 //   - It is the most basic collection type. It can ONLY go through items one by one, from start to end.
 //     No Add(), no Remove(), no index [i], no .Count property.
