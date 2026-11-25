@@ -72,6 +72,7 @@ using System;
 using System.Collections.Generic;   // for List<T>, Dictionary<TKey, TValue> and IEnumerable<T> (the type LINQ results are)
 using System.Linq;   // for all LINQ methods: Where, Select, OrderBy, Count, First... (without it, list.Where(...) gives an error)
 
+// Employee is Data model (or entity) representing a employee record
 class Employee
 {
 	public int EmployeeId { get; set; }
@@ -81,6 +82,7 @@ class Employee
 	public int? ManagerId { get; set; }
 }
 
+// Department is also a Data model (or entity) representing a employee record
 class Department
 {
 	public int DepartmentId { get; set; }
@@ -91,6 +93,7 @@ class Program
 {
 	static void Main()
 	{
+		// Declaring a generic collection that accepts Employee objects
 		List<Employee> employees = new List<Employee>
 		{
 			new Employee { EmployeeId = 1, EmployeeName = "Bishnu", Salary = 1200000, DepartmentId = 1, ManagerId = 5 },
