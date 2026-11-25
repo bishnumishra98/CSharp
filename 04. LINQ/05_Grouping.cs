@@ -136,7 +136,10 @@ class Program
 
 		// ---------------- Sort groups (biggest department first, then by Id) ----------------
 
-		var countPerDept = employees.GroupBy(e => e.DepartmentId).OrderByDescending(g => g.Count()).ThenBy(g => g.Key).Select(g => $"{deptName(g.Key)}: {g.Count()}");
+		var countPerDept = employees.GroupBy(e => e.DepartmentId)
+									.OrderByDescending(g => g.Count())
+									.ThenBy(g => g.Key)
+									.Select(g => $"{deptName(g.Key)}: {g.Count()}");
 		Console.WriteLine(string.Join(", ", countPerDept));   // o/p: "IT: 3, HR: 3, Finance: 2"
 
 		// ---------------- Grouping simple values ----------------

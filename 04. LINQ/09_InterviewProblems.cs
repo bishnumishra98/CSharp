@@ -118,7 +118,8 @@ class Program
 		var byDept = departments.GroupJoin(employees,
 										   d => d.DepartmentId,
 										   e => e.DepartmentId,
-										   (d, emps) => $"{d.DepartmentName}: {(emps.Any() ? string.Join(", ", emps.Select(e => e.EmployeeName)) : "-")}");
+										   (d, emps) => $"{d.DepartmentName}: " +
+														$"{(emps.Any() ? string.Join(", ", emps.Select(e => e.EmployeeName)) : "-")}");
 
 		foreach (string line in byDept)
 		{
@@ -196,7 +197,8 @@ class Program
 		// ---------------- 10. Employees earning more than their department's average ----------------
 		// Idea: find average of each department first (Dictionary), then compare each employee with it.
 
-		Dictionary<int, decimal> deptAvg = employees.GroupBy(e => e.DepartmentId).ToDictionary(g => g.Key, g => g.Average(e => e.Salary));
+		Dictionary<int, decimal> deptAvg = employees.GroupBy(e => e.DepartmentId)
+													.ToDictionary(g => g.Key, g => g.Average(e => e.Salary));
 
 		var aboveAvg = employees.Where(e => e.Salary > deptAvg[e.DepartmentId]).Select(e => e.EmployeeName);
 		Console.WriteLine(string.Join(", ", aboveAvg));   // o/p: "Amit, Karan, Sneha, Neha"
@@ -211,7 +213,8 @@ class Program
 
 		// ---------------- 12. Departments with no employees ----------------
 
-		var noEmployees = departments.Where(d => !employees.Any(e => e.DepartmentId == d.DepartmentId)).Select(d => d.DepartmentName);
+		var noEmployees = departments.Where(d => !employees.Any(e => e.DepartmentId == d.DepartmentId))
+									 .Select(d => d.DepartmentName);
 		Console.WriteLine(string.Join(", ", noEmployees));   // o/p: "Marketing"
 
 		// ---------------- 13. Number of employees under each manager ----------------

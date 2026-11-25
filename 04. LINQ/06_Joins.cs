@@ -100,7 +100,8 @@ class Program
 		var deptWithEmployees = departments.GroupJoin(employees,
 													  d => d.DepartmentId,
 													  e => e.DepartmentId,
-													  (d, emps) => $"{d.DepartmentName} ({emps.Count()}): {string.Join(", ", emps.Select(e => e.EmployeeName))}");
+													  (d, emps) => $"{d.DepartmentName} ({emps.Count()}): " +
+																   $"{string.Join(", ", emps.Select(e => e.EmployeeName))}");
 
 		foreach (string line in deptWithEmployees)
 		{
@@ -117,7 +118,8 @@ class Program
 		var leftJoin = departments.GroupJoin(employees,
 											 d => d.DepartmentId,
 											 e => e.DepartmentId,
-											 (d, emps) => emps.DefaultIfEmpty().Select(e => $"{d.DepartmentName} - {e?.EmployeeName ?? "No employee"}"))
+											 (d, emps) => emps.DefaultIfEmpty()
+															  .Select(e => $"{d.DepartmentName} - {e?.EmployeeName ?? "No employee"}"))
 								  .SelectMany(x => x);
 
 		foreach (string line in leftJoin)
@@ -156,7 +158,8 @@ class Program
 		var withManagerLeft = employees.GroupJoin(employees,
 												  e => e.ManagerId,
 												  m => (int?)m.EmployeeId,
-												  (e, managers) => managers.DefaultIfEmpty().Select(m => $"{e.EmployeeName} -> {m?.EmployeeName ?? "No manager"}"))
+												  (e, managers) => managers.DefaultIfEmpty()
+																		   .Select(m => $"{e.EmployeeName} -> {m?.EmployeeName ?? "No manager"}"))
 									   .SelectMany(x => x);
 		Console.WriteLine(string.Join(", ", withManagerLeft));
 		// o/p: "Bishnu -> Karan, Rahul -> Karan, Amit -> Sneha, Priya -> Sneha, Karan -> No manager, Sneha -> No manager, Neha -> Karan, Arjun -> Sneha"

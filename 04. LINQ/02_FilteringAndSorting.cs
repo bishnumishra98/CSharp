@@ -93,7 +93,9 @@ class Program
 		Console.WriteLine(string.Join(", ", right));   // o/p: "Karan, Amit, Sneha, Arjun, Bishnu, Neha, Rahul, Priya"
 
 		// Department 1, 2, 3 and inside each department, salary high to low
-		var byDeptThenSalary = employees.OrderBy(e => e.DepartmentId).ThenByDescending(e => e.Salary).Select(e => $"{e.DepartmentId}-{e.EmployeeName}");
+		var byDeptThenSalary = employees.OrderBy(e => e.DepartmentId)
+										.ThenByDescending(e => e.Salary)
+										.Select(e => $"{e.DepartmentId}-{e.EmployeeName}");
 		Console.WriteLine(string.Join(", ", byDeptThenSalary));
 		// o/p: "1-Amit, 1-Sneha, 1-Bishnu, 2-Karan, 2-Arjun, 2-Rahul, 3-Neha, 3-Priya"
 
@@ -126,7 +128,10 @@ class Program
 
 		// Pagination: page 2, with 3 employees per page
 		int pageNumber = 2, pageSize = 3;
-		var page2 = employees.OrderBy(e => e.EmployeeId).Skip((pageNumber - 1) * pageSize).Take(pageSize).Select(e => e.EmployeeName);
+		var page2 = employees.OrderBy(e => e.EmployeeId)
+							 .Skip((pageNumber - 1) * pageSize)
+							 .Take(pageSize)
+							 .Select(e => e.EmployeeName);
 		Console.WriteLine(string.Join(", ", page2));   // o/p: "Priya, Karan, Sneha"
 
 		// ---------------- TakeWhile / SkipWhile vs Where ----------------

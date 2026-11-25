@@ -183,11 +183,13 @@ class Program
 		Console.WriteLine(string.Join(", ", a.Concat(b)));      // o/p: "1, 2, 3, 4, 3, 4, 5, 6"
 
 		// ExceptBy: departments whose Id is NOT in the employees' DepartmentIds
-		var emptyDepts = departments.ExceptBy(employees.Select(e => e.DepartmentId), d => d.DepartmentId).Select(d => d.DepartmentName);
+		var emptyDepts = departments.ExceptBy(employees.Select(e => e.DepartmentId), d => d.DepartmentId)
+									.Select(d => d.DepartmentName);
 		Console.WriteLine(string.Join(", ", emptyDepts));   // o/p: "Marketing"
 
 		// IntersectBy: employees whose Id is present in the list of ManagerIds (i.e., who are managers)
-		var managers = employees.IntersectBy(employees.Select(e => e.ManagerId), e => (int?)e.EmployeeId).Select(e => e.EmployeeName);
+		var managers = employees.IntersectBy(employees.Select(e => e.ManagerId), e => (int?)e.EmployeeId)
+								.Select(e => e.EmployeeName);
 		Console.WriteLine(string.Join(", ", managers));   // o/p: "Karan, Sneha"
 	}
 }
