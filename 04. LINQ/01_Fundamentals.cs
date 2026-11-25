@@ -147,9 +147,14 @@ class Program
 
 		// ---------------- Select (transform) ----------------
 
+		// 'nums' is a collection, and we are applying a projection on it. Select runs the lambda once for each item,
+		// and 'n' is the current item (1, then 2, then 3...). Each n becomes n * n in the new result.
 		IEnumerable<int> squares = nums.Select(n => n * n);
 		Console.WriteLine(string.Join(", ", squares));   // o/p: "1, 4, 9, 16, 25, 36, 49, 64, 81, 100"
 
+		// 'employees' is a collection, and we are applying a projection on it. Select runs the lambda once for each employee,
+		// and 'e' is the current employee (Bishnu, then Rahul...). Each whole Employee object becomes just its name (a string),
+		// so the result type changes from Employee to string: IEnumerable<Employee> -> IEnumerable<string>.
 		IEnumerable<string> names = employees.Select(e => e.EmployeeName);   // Employee -> string
 		Console.WriteLine(string.Join(", ", names));   // o/p: "Bishnu, Rahul, Amit, Priya, Karan, Sneha, Neha, Arjun"
 
