@@ -28,7 +28,7 @@
 //                   Func<int, int> square = x => x * x;           // takes int, returns int
 //                   Func<int, bool> isEven = n => n % 2 == 0;     // takes int, returns bool
 //   - Action<...> : returns nothing (void).
-//                   Action<string> greet = name => Console.WriteLine("Hi " + name);
+//                   Action<string> greet = name => Console.WriteLine("Hi " + name);   // takes string, returns nothing
 //
 //   Every LINQ method takes a lambda. Where(e => e.Salary > 1000000) means: "for each employee e, keep it if salary > 10 lakh".
 
