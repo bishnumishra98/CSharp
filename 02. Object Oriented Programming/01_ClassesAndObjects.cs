@@ -16,7 +16,7 @@
 // ● Creating an object: Use the 'new' keyword.
 //      Car car1 = new Car();
 //   'new' creates the object in memory, and car1 stores the reference (address) of that object.
-//   Class is a reference type (see 01. CSharp_Program/12_ValueTypesAndReferenceTypes.cs).
+//   Class is a reference type (see 01. CSharp_Program/13_ValueTypesAndReferenceTypes.cs).
 
 // ● Dot (.) operator: Used to access the data and methods of an object. e.g., car1.Color, car1.Start()
 

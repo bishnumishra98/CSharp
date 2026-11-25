@@ -4,6 +4,41 @@
 // ● Simplest way to declare a string in C# is using string literal:
 //   Example: string greeting = "Hello, World!";   // declares and initializes a string variable
 
+// ● Ways to create a string:
+//   I.   Empty string (length 0):
+//        - string s1 = "";              // empty double quotes
+//        - string s2 = string.Empty;    // same as "", just more readable
+//   II.  null string (no string at all):
+//        - string? s3 = null;           // variable points to nothing. s3.Length will crash (NullReferenceException).
+//        - NOTE: "" is an empty box, null means there is no box.
+//   III. String of length 'x' filled with one character:
+//        - new string(ch, x)            // repeats character 'ch', 'x' times
+//        - string spaces = new string(' ', 5);   // "     " (5 spaces)
+//        - string stars  = new string('*', 3);   // "***"
+//        - NOTE: A string can't have "nothing" inside it at a position, so a string of length x must be filled with
+//                some character. Use ' ' (space) or '\0' (null character) if you just want a blank string of length x.
+//   IV.  From a char array:
+//        - new string(charArray)        // joins all characters of the array into a string
+//        - char [] letters = { 'C', 'a', 't' };  string word = new string(letters);   // "Cat"
+//        - Useful when we want to change characters: string -> char [] -> change -> back to string.
+
+// ● Concatenation (joining strings):
+//   I.   Using + operator: "Hello" + " " + "World"   gives "Hello World"
+//   II.  Using += operator: s += "World";   same as s = s + "World";
+//   III. Using string.Concat(s1, s2): "Hello" + "World" in function form.
+//   IV.  Using interpolation: $"{s1} {s2}"   (easiest to read when mixing many values)
+//   NOTE: + also works with numbers: "Age: " + 25 gives "Age: 25". But be careful: 1 + 2 + "a" gives "3a"
+//         (numbers are added first), while "a" + 1 + 2 gives "a12" (once a string comes, everything is joined).
+
+// ● Adding a character to a string:
+//   I.   At the end: s + 'c'  or  s += 'c';
+//   II.  At the start: 'c' + s
+//   III. At an index: s.Insert(index, "c")   (Insert takes a string, so use "c" or ch.ToString())
+//   NOTE: Strings are immutable, so all of these create a NEW string. The old one is not changed.
+//         Doing this many times in a loop is slow. Use StringBuilder for that (see 11_StringBuilder.cs).
+//   CAREFUL: 'a' + 'b' is NOT "ab". A char is a number inside (its code), so 'a' + 'b' = 97 + 98 = 195.
+//            Use "" + 'a' + 'b' or string.Concat('a', 'b') to get "ab".
+
 // ● Utility functions and properties of string:
 //
 //   I.   Core Properties:
@@ -51,6 +86,61 @@
 //
 //   VI.  String Interpolation:
 //        - $"Hello, {name}!" : Embeds expressions inside string literals, allowing for easier and more readable string formatting.
+
+string empty1 = "";
+string empty2 = string.Empty;
+
+Console.WriteLine($"Length of empty1: {empty1.Length}, Length of empty2: {empty2.Length}");   // o/p: "Length of empty1: 0, Length of empty2: 0"
+Console.WriteLine($"Are \"\" and string.Empty equal? {empty1 == empty2}");   // o/p: "Are "" and string.Empty equal? True"
+
+string? nothing = null;
+
+Console.WriteLine($"Is null string null or empty? {string.IsNullOrEmpty(nothing)}");   // o/p: "Is null string null or empty? True"
+
+string spaces = new string(' ', 5);   // string of length 5, filled with spaces
+string stars = new string('*', 3);   // string of length 3, filled with '*'
+
+Console.WriteLine($"spaces: '{spaces}', Length: {spaces.Length}");   // o/p: "spaces: '     ', Length: 5"
+Console.WriteLine($"stars: '{stars}', Length: {stars.Length}");   // o/p: "stars: '***', Length: 3"
+
+char [] letters = { 'C', 'a', 't' };
+string word = new string(letters);   // char array -> string
+
+Console.WriteLine($"String made from char array: '{word}'");   // o/p: "String made from char array: 'Cat'"
+
+string first = "Hello";
+string second = "World";
+
+string joined1 = first + " " + second;   // using +
+Console.WriteLine(joined1);   // o/p: "Hello World"
+
+string joined2 = "Hello";
+joined2 += " World";   // using +=
+Console.WriteLine(joined2);   // o/p: "Hello World"
+
+string joined3 = string.Concat(first, " ", second);   // using string.Concat
+Console.WriteLine(joined3);   // o/p: "Hello World"
+
+string joined4 = $"{first} {second}";   // using interpolation
+Console.WriteLine(joined4);   // o/p: "Hello World"
+
+Console.WriteLine("Age: " + 25);   // o/p: "Age: 25"
+Console.WriteLine(1 + 2 + "a");   // o/p: "3a"
+Console.WriteLine("a" + 1 + 2);   // o/p: "a12"
+
+string pet = "Ca";
+
+pet += 't';   // add character at the end
+Console.WriteLine(pet);   // o/p: "Cat"
+
+pet = 'A' + pet;   // add character at the start
+Console.WriteLine(pet);   // o/p: "ACat"
+
+pet = pet.Insert(1, "-");   // add character at index 1
+Console.WriteLine(pet);   // o/p: "A-Cat"
+
+Console.WriteLine('a' + 'b');   // o/p: "195"   (char + char = number, not a string)
+Console.WriteLine("" + 'a' + 'b');   // o/p: "ab"
 
 string name = "Vishnu";
 
