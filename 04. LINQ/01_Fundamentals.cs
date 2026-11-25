@@ -26,12 +26,12 @@
 //   A lambda can be stored in Func<> or Action<>. Both are built-in delegates (see 01. CSharp_Program/14_Delegates.cs).
 //   - Func<...>   : returns a value. The LAST type is the return type.
 //                   Func<int, int> square = x => x * x;           // takes int, returns int
-//                   Func<int, int, int> square = x => x * x;           // takes (int, int), returns int
+//                   Func<int, int, int> add = (a, b) => a + b;    // takes (int, int), returns int
 //                   Func<int, bool> isEven = n => n % 2 == 0;     // takes int, returns bool
 //   - Action<...> : returns nothing (void).
 //                   Action<string> greet = name => Console.WriteLine("Hi " + name);   // takes string, returns nothing
 //
-//   Every LINQ method takes a lambda. Where(e => e.Salary > 1000000) means: "for each employee e, keep it if salary > 10 lakh".
+//   Most LINQ methods take a lambda. Where(e => e.Salary > 1000000) means: "for each employee e, keep it if salary > 10 lakh".
 
 // ● Where(condition): Filter. Keeps only those items for which the condition is true.
 // ● Select(transform): Projection. Converts each item into something else (e.g., Employee -> its name). Projection is the
@@ -55,7 +55,7 @@
 //                   This interface allows you to iterate through a sequence of elements one at a time.
 //   - Array, List<T>, Dictionary, HashSet, string... all implement IEnumerable<T>. That's why LINQ works on all of them.
 //   - It is the most basic collection type. It can ONLY go through items one by one, from start to end.
-//     No Add(), no Remove(), no index [i], no .Count property.
+//     No Add(), no Remove(), no index [i], no .Count property (but LINQ's Count() method works on it).
 //        IEnumerable<int> nums = new List<int> { 1, 2, 3 };
 //        foreach (int n in nums) Console.Write(n);   // OK. o/p: "123"
 //        nums.Add(4);                                // Error: IEnumerable has no Add()
@@ -85,7 +85,7 @@ using System;
 using System.Collections.Generic;   // for List<T>, Dictionary<TKey, TValue> and IEnumerable<T> (the type LINQ results are)
 using System.Linq;   // for all LINQ methods: Where, Select, OrderBy, Count, First... (without it, list.Where(...) gives an error)
 
-// Employee is Data model (or entity) representing a employee record
+// Employee is a Data model (or entity) representing an employee record
 class Employee
 {
 	public int EmployeeId { get; set; }
@@ -95,7 +95,7 @@ class Employee
 	public int? ManagerId { get; set; }
 }
 
-// Department is also a Data model (or entity) representing a employee record
+// Department is also a Data model (or entity) representing a department record
 class Department
 {
 	public int DepartmentId { get; set; }
@@ -171,8 +171,9 @@ class Program
 		var richNames = employees.Where(e => e.Salary > 1000000).Select(e => e.EmployeeName);
 		Console.WriteLine(string.Join(", ", richNames));   // o/p: "Bishnu, Amit, Karan, Sneha, Arjun"
 
-		// NOTE: Order matters. If we Select names first, we get strings, and a string has no 'Salary' to check.
-		// employees.Select(e => e.EmployeeName).Where(e => e.Salary > 1000000);   // Error
+		// NOTE: Order matters. If we Select names first, we get strings (IEnumerable<string>) because EmployeeName is a string
+		//       in Employee data model. So in Where, each 'e' is now a string (like "Bishnu"), and a string has no 'Salary' to check.
+		//       employees.Select(e => e.EmployeeName).Where(e => e.Salary > 1000000);   // Error
 
 		// ---------------- Query syntax vs Method syntax ----------------
 
