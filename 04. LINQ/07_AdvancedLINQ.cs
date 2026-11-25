@@ -168,8 +168,8 @@ class Program
 
 		// ---------------- VI. DistinctBy ----------------
 
-		var onePerDept = employees.DistinctBy(e => e.DepartmentId);
-		Console.WriteLine(string.Join(", ", onePerDept.Select(e => e.EmployeeName)));   // o/p: "Bishnu, Rahul, Priya"
+		var onePerDept = employees.DistinctBy(e => e.DepartmentId).Select(e => e.EmployeeName);
+		Console.WriteLine(string.Join(", ", onePerDept));   // o/p: "Bishnu, Rahul, Priya"
 
 		// ---------------- VII. Union / Intersect / Except ----------------
 
@@ -183,11 +183,11 @@ class Program
 		Console.WriteLine(string.Join(", ", a.Concat(b)));      // o/p: "1, 2, 3, 4, 3, 4, 5, 6"
 
 		// ExceptBy: departments whose Id is NOT in the employees' DepartmentIds
-		var emptyDepts = departments.ExceptBy(employees.Select(e => e.DepartmentId), d => d.DepartmentId);
-		Console.WriteLine(string.Join(", ", emptyDepts.Select(d => d.DepartmentName)));   // o/p: "Marketing"
+		var emptyDepts = departments.ExceptBy(employees.Select(e => e.DepartmentId), d => d.DepartmentId).Select(d => d.DepartmentName);
+		Console.WriteLine(string.Join(", ", emptyDepts));   // o/p: "Marketing"
 
 		// IntersectBy: employees whose Id is present in the list of ManagerIds (i.e., who are managers)
-		var managers = employees.IntersectBy(employees.Select(e => e.ManagerId), e => (int?)e.EmployeeId);
-		Console.WriteLine(string.Join(", ", managers.Select(e => e.EmployeeName)));   // o/p: "Karan, Sneha"
+		var managers = employees.IntersectBy(employees.Select(e => e.ManagerId), e => (int?)e.EmployeeId).Select(e => e.EmployeeName);
+		Console.WriteLine(string.Join(", ", managers));   // o/p: "Karan, Sneha"
 	}
 }

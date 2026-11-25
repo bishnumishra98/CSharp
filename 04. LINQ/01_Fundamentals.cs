@@ -49,7 +49,7 @@
 //   - The compiler converts query syntax into method syntax. So both have the same speed.
 //   - Query syntax starts with 'from' and ends with 'select' or 'group'.
 //   - Many methods (Count, Sum, First, Take, Distinct...) exist only in method syntax.
-//     That's why method syntax is used more in real projects. Query syntax is easier to read for joins (see 06_Joins.cs).
+//     That's why method syntax is used more in real projects, and the rest of these LINQ files use only method syntax.
 
 // ● IEnumerable<T>: An interface that simply means "my items can be read one by one" (i.e., you can run foreach on me).
 //                   This interface allows you to iterate through a sequence of elements one at a time.

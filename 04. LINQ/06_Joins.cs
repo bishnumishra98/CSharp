@@ -8,11 +8,6 @@
 //                       e => e.DepartmentId,                  // key from employees
 //                       d => d.DepartmentId,                  // key from departments
 //                       (e, d) => $"{e.EmployeeName} - {d.DepartmentName}")
-//   - Query syntax (easier to read):
-//        from e in employees
-//        join d in departments on e.DepartmentId equals d.DepartmentId
-//        select $"{e.EmployeeName} - {d.DepartmentName}"
-//     NOTE: Use 'equals', not '=='. The left side of 'equals' must be from the first collection.
 
 // ● II. GroupJoin: For each item of the 1st collection, gives a GROUP of matching items from the 2nd collection.
 //   - The group can be empty. So Marketing comes with 0 employees.
@@ -23,16 +18,20 @@
 //                              (d, emps) => ...)          // emps = all employees of department d
 
 // ● III. LEFT JOIN: ALL items from the left side, and matching items from the right side (or null if no match).
-//   C# had no LeftJoin method before .NET 10. The classic way is GroupJoin + DefaultIfEmpty():
-//        from d in departments
-//        join e in employees on d.DepartmentId equals e.DepartmentId into emps   // 'into' makes it a GroupJoin
-//        from e in emps.DefaultIfEmpty()                                          // empty group -> one null
-//        select $"{d.DepartmentName} - {e?.EmployeeName ?? "No employee"}"
+//   C# had no LeftJoin method before .NET 10. The classic way is GroupJoin + DefaultIfEmpty() + SelectMany():
+//        departments.GroupJoin(employees,
+//                              d => d.DepartmentId,
+//                              e => e.DepartmentId,
+//                              (d, emps) => emps.DefaultIfEmpty().Select(e => $"{d.DepartmentName} - {e?.EmployeeName ?? "No employee"}"))
+//                   .SelectMany(x => x)
 //   - DefaultIfEmpty(): if the group is empty, gives one default item (null), so the left item is not lost.
+//   - GroupJoin gives one small list per department (a list of lists). SelectMany(x => x) joins them into 1 flat list
+//     (see 07_AdvancedLINQ.cs).
 //   - .NET 10 added LeftJoin() and RightJoin() methods. Interviews still ask for the GroupJoin way.
 
 // ● IV. Self join: Joining a collection with itself. Example: employee with their manager (manager is also an employee).
-// ● V.  Joining multiple collections: Just write one 'join' after another (query syntax is much cleaner here).
+// ● V.  Joining multiple collections: Write one Join after another. After the 1st Join, keep both items together using
+//       new { e, d } (an anonymous object holding both, see 07_AdvancedLINQ.cs), so the 2nd Join can use them.
 
 // ● NOTE: Both keys must be of the same type. ManagerId is int? and EmployeeId is int, so we write (int?)m.EmployeeId.
 
@@ -89,11 +88,12 @@ class Program
 		// o/p: "Bishnu - IT, Rahul - HR, Amit - IT, Priya - Finance, Karan - HR, Sneha - IT, Neha - Finance, Arjun - HR"
 		// (No Marketing, because no employee has DepartmentId 4)
 
-		var innerQuery = from e in employees
-						 join d in departments on e.DepartmentId equals d.DepartmentId
-						 where d.DepartmentName == "HR"
-						 select $"{e.EmployeeName} - {d.DepartmentName}";
-		Console.WriteLine(string.Join(", ", innerQuery));   // o/p: "Rahul - HR, Karan - HR, Arjun - HR"
+		// Join with a filter: filter departments first, then join
+		var hrOnly = employees.Join(departments.Where(d => d.DepartmentName == "HR"),
+									e => e.DepartmentId,
+									d => d.DepartmentId,
+									(e, d) => $"{e.EmployeeName} - {d.DepartmentName}");
+		Console.WriteLine(string.Join(", ", hrOnly));   // o/p: "Rahul - HR, Karan - HR, Arjun - HR"
 
 		// ---------------- II. GroupJoin ----------------
 
@@ -114,10 +114,11 @@ class Program
 
 		// ---------------- III. LEFT JOIN (GroupJoin + DefaultIfEmpty) ----------------
 
-		var leftJoin = from d in departments
-					   join e in employees on d.DepartmentId equals e.DepartmentId into emps
-					   from e in emps.DefaultIfEmpty()
-					   select $"{d.DepartmentName} - {e?.EmployeeName ?? "No employee"}";
+		var leftJoin = departments.GroupJoin(employees,
+											 d => d.DepartmentId,
+											 e => e.DepartmentId,
+											 (d, emps) => emps.DefaultIfEmpty().Select(e => $"{d.DepartmentName} - {e?.EmployeeName ?? "No employee"}"))
+								  .SelectMany(x => x);
 
 		foreach (string line in leftJoin)
 		{
@@ -143,28 +144,31 @@ class Program
 
 		// ---------------- IV. Self join (employee -> manager) ----------------
 
-		var withManager = from e in employees
-						  join m in employees on e.ManagerId equals (int?)m.EmployeeId
-						  select $"{e.EmployeeName} -> {m.EmployeeName}";
+		var withManager = employees.Join(employees,
+										 e => e.ManagerId,
+										 m => (int?)m.EmployeeId,
+										 (e, m) => $"{e.EmployeeName} -> {m.EmployeeName}");
 		Console.WriteLine(string.Join(", ", withManager));
 		// o/p: "Bishnu -> Karan, Rahul -> Karan, Amit -> Sneha, Priya -> Sneha, Neha -> Karan, Arjun -> Sneha"
 		// (Karan and Sneha are missing, because they have no manager. Inner join drops them.)
 
-		var withManagerLeft = from e in employees
-							  join m in employees on e.ManagerId equals (int?)m.EmployeeId into managers
-							  from m in managers.DefaultIfEmpty()
-							  where m == null   // show only the employees who got no match (left join gives them a null manager)
-							  select $"{e.EmployeeName} -> {m?.EmployeeName ?? "No manager"}";
-		Console.WriteLine(string.Join(", ", withManagerLeft));   // o/p: "Karan -> No manager, Sneha -> No manager"
+		// Left self join: everyone comes, and those with no manager get "No manager"
+		var withManagerLeft = employees.GroupJoin(employees,
+												  e => e.ManagerId,
+												  m => (int?)m.EmployeeId,
+												  (e, managers) => managers.DefaultIfEmpty().Select(m => $"{e.EmployeeName} -> {m?.EmployeeName ?? "No manager"}"))
+									   .SelectMany(x => x);
+		Console.WriteLine(string.Join(", ", withManagerLeft));
+		// o/p: "Bishnu -> Karan, Rahul -> Karan, Amit -> Sneha, Priya -> Sneha, Karan -> No manager, Sneha -> No manager, Neha -> Karan, Arjun -> Sneha"
 
 		// ---------------- V. Joining multiple collections ----------------
 		// employee + their department + their manager
 
-		var report = from e in employees
-					 join d in departments on e.DepartmentId equals d.DepartmentId
-					 join m in employees on e.ManagerId equals (int?)m.EmployeeId
-					 orderby d.DepartmentName, e.EmployeeName
-					 select $"{e.EmployeeName} | {d.DepartmentName} | Manager: {m.EmployeeName}";
+		var report = employees.Join(departments, e => e.DepartmentId, d => d.DepartmentId, (e, d) => new { e, d })        // 1st join: employee + department
+							  .Join(employees, x => x.e.ManagerId, m => (int?)m.EmployeeId, (x, m) => new { x.e, x.d, m })   // 2nd join: + manager
+							  .OrderBy(x => x.d.DepartmentName)
+							  .ThenBy(x => x.e.EmployeeName)
+							  .Select(x => $"{x.e.EmployeeName} | {x.d.DepartmentName} | Manager: {x.m.EmployeeName}");
 
 		foreach (string line in report)
 		{

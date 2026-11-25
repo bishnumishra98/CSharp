@@ -18,10 +18,8 @@
 //        employees.GroupBy(e => e.DepartmentId).Where(g => g.Count() >= 3)
 //   III. Choose what goes inside each group: GroupBy(key, elementSelector)
 //        employees.GroupBy(e => e.DepartmentId, e => e.EmployeeName)    // groups of names, not Employees
-//   IV.  Query syntax:
-//        from e in employees
-//        group e by e.DepartmentId into g
-//        select g.Key + ": " + g.Count()
+//   IV.  Sort groups: add OrderBy AFTER GroupBy (e.g., biggest department first).
+//        employees.GroupBy(e => e.DepartmentId).OrderByDescending(g => g.Count())
 
 using System;
 using System.Collections.Generic;
@@ -136,12 +134,9 @@ class Program
 		// 6: Amit, Priya, Arjun
 		// No manager: Karan, Sneha
 
-		// ---------------- Query syntax ----------------
+		// ---------------- Sort groups (biggest department first, then by Id) ----------------
 
-		var countPerDept = from e in employees
-						   group e by e.DepartmentId into g
-						   orderby g.Count() descending, g.Key
-						   select $"{deptName(g.Key)}: {g.Count()}";
+		var countPerDept = employees.GroupBy(e => e.DepartmentId).OrderByDescending(g => g.Count()).ThenBy(g => g.Key).Select(g => $"{deptName(g.Key)}: {g.Count()}");
 		Console.WriteLine(string.Join(", ", countPerDept));   // o/p: "IT: 3, HR: 3, Finance: 2"
 
 		// ---------------- Grouping simple values ----------------

@@ -188,10 +188,9 @@ class Program
 		// ---------------- 9. Employees earning more than their manager ----------------
 		// Idea: self join (employee with manager), then compare salaries.
 
-		var moreThanManager = from e in employees
-							  join m in employees on e.ManagerId equals (int?)m.EmployeeId
-							  where e.Salary > m.Salary
-							  select $"{e.EmployeeName} ({e.Salary}) > {m.EmployeeName} ({m.Salary})";
+		var moreThanManager = employees.Join(employees, e => e.ManagerId, m => (int?)m.EmployeeId, (e, m) => new { e, m })
+									   .Where(x => x.e.Salary > x.m.Salary)
+									   .Select(x => $"{x.e.EmployeeName} ({x.e.Salary}) > {x.m.EmployeeName} ({x.m.Salary})");
 		Console.WriteLine(string.Join(", ", moreThanManager));   // o/p: "Amit (1500000) > Sneha (1400000)"
 
 		// ---------------- 10. Employees earning more than their department's average ----------------
@@ -212,8 +211,8 @@ class Program
 
 		// ---------------- 12. Departments with no employees ----------------
 
-		var noEmployees = departments.Where(d => !employees.Any(e => e.DepartmentId == d.DepartmentId));
-		Console.WriteLine(string.Join(", ", noEmployees.Select(d => d.DepartmentName)));   // o/p: "Marketing"
+		var noEmployees = departments.Where(d => !employees.Any(e => e.DepartmentId == d.DepartmentId)).Select(d => d.DepartmentName);
+		Console.WriteLine(string.Join(", ", noEmployees));   // o/p: "Marketing"
 
 		// ---------------- 13. Number of employees under each manager ----------------
 
