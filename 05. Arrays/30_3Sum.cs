@@ -29,6 +29,8 @@ using System.Linq;
 
 public class Solution
 {
+	// Brute force algorithm: Check every combination of 3 elements using 3 loops. If their sum is 0, sort the triplet and
+	// store it in a set, so that only unique triplets are kept.
 	// T.C: O(n^3)
 	// S.C: O(2n)
 	public IList<IList<int>> ThreeSum_BruteForce(int[] nums)

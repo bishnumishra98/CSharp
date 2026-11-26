@@ -22,6 +22,7 @@ using System.Collections.Generic;
 
 public class Solution
 {
+	// Brute force algorithm: Check every possible pair (i, j) using 2 loops. If nums[i] + nums[j] == target, return {i, j}.
 	// T.C: O(n^2)
 	// S.C: O(1)
 	public int[] TwoSum_BruteForce(int[] nums, int target)
@@ -39,7 +40,10 @@ public class Solution
 
 // ----------------------------------------------------------------------------------------------------------------
 
-	// Hashing techinique using Dictionary
+	// Optimal algorithm: Hashing technique using Dictionary
+	// 1. For every nums[i], the number we need to reach the target is 'complement = target - nums[i]'.
+	// 2. Keep a Dictionary of the numbers seen so far (key: number, value: its index).
+	// 3. If the complement is already in the dictionary, the pair is found. Else, store nums[i] with its index and move ahead.
 	// T.C: O(n)
 	// S.C: O(n)
 	public int[] TwoSum(int[] nums, int target)
