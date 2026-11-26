@@ -39,6 +39,8 @@
 // Video link: https://www.youtube.com/watch?v=4VqmGXwpLqc
 
 
+// Dry run image (in this folder): 04_MergeSort.jpg
+
 using System;
 
 public class Solution

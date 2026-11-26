@@ -134,11 +134,9 @@ class Program
 	{
 		string str = "loveleetcode";
 
-		// char ans = new Solution().FirstUnique_Naive(str);
-		// char ans = new Solution().FirstUnique_Dictionary(str);
-		char ans = new Solution().FirstUnique(str);
-		// char ans = new Solution().FirstUnique_LINQ(str);
-
-		Console.WriteLine(ans);   // o/p: v
+		Console.WriteLine(new Solution().FirstUnique_Naive(str));        // o/p: v
+		Console.WriteLine(new Solution().FirstUnique_Dictionary(str));   // o/p: v
+		Console.WriteLine(new Solution().FirstUnique(str));              // o/p: v
+		Console.WriteLine(new Solution().FirstUnique_LINQ(str));         // o/p: v
 	}
 }

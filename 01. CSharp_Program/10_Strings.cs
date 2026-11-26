@@ -62,6 +62,11 @@
 //        - ToCharArray(): Converts the string into an array of characters (char []).
 //        - ToString(): Returns the string representation of the current instance.
 //        - Parse(str): Converts the string representation of a number to its numeric equivalent (e.g., int.Parse, double.Parse).
+//                      Throws an exception if the string is not a valid number, or if the number doesn't fit (like C++ stoi()).
+//        - TryParse(str, out result): Same as Parse, but never throws. Returns true/false, and puts the number in 'result'
+//                                     (0 if it failed). Safer, so use it for user input.
+//          Note: Both need the WHOLE string to be a number (spaces around it are fine). So "42abc" fails. C++ atoi()/stoi()
+//                are different: they stop at 'a' and give 42.
 //
 //   IV.  Modification and Formatting:
 //        - ToUpper(): Converts the string to uppercase.
@@ -191,6 +196,11 @@ Console.WriteLine($"String representation of the integer {num} is: '{numString}'
 int parsedNum = int.Parse(numString);   // converts the string back to an integer
 
 Console.WriteLine($"Parsed integer from the string '{numString}' is: {parsedNum}");   // o/p: "Parsed integer from the string '12345' is: 12345"
+
+bool isNumber = int.TryParse("42abc", out int tryParsedNum);   // "42abc" is not a whole number, so it fails (no exception)
+// int.Parse("42abc");   // Error: FormatException
+
+Console.WriteLine($"TryParse of '42abc' worked? {isNumber}, value: {tryParsedNum}");   // o/p: "TryParse of '42abc' worked? False, value: 0"
 
 Console.WriteLine($"String '{name}' in uppercase is: '{name.ToUpper()}'");   // o/p: "String 'Vishnu' in uppercase is: 'VISHNU'"
 

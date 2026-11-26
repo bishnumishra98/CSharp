@@ -55,6 +55,8 @@
 //    In this way, we visit every station only once and still find the station from which the trip can be completed.
 
 
+// Dry run image (in this folder): 32_GasStation.jpg
+
 using System;
 
 public class Solution

@@ -15,6 +15,8 @@
 // NOTE: This is the bigger version of 03_Segregate0sAnd1s.cs (there we had only 0s and 1s, here we have 0s, 1s and 2s).
 
 
+// Dry run image (in this folder): 15_SortColors.jpg
+
 using System;
 
 public class Solution

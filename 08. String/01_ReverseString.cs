@@ -118,12 +118,10 @@ class Program
 	{
 		string str = "Hello";
 
-		// string ans = new Solution().Reverse_Naive(str);
-		// string ans = new Solution().Reverse_StringBuilder(str);
-		string ans = new Solution().Reverse(str);
-		// string ans = new Solution().Reverse_BuiltIn(str);
-		// string ans = new Solution().Reverse_LINQ(str);
-
-		Console.WriteLine(ans);   // o/p: "olleH"
+		Console.WriteLine(new Solution().Reverse_Naive(str));           // o/p: olleH
+		Console.WriteLine(new Solution().Reverse_StringBuilder(str));   // o/p: olleH
+		Console.WriteLine(new Solution().Reverse(str));                 // o/p: olleH
+		Console.WriteLine(new Solution().Reverse_BuiltIn(str));         // o/p: olleH
+		Console.WriteLine(new Solution().Reverse_LINQ(str));            // o/p: olleH
 	}
 }
