@@ -66,7 +66,7 @@ public class Solution
 // ------------------------------------------------------------------------------
 
 	// 4. GCD (Euclid): gcd(a, b) = gcd(b, a % b), and the base case is gcd(a, 0) = a.
-	// (Loop version, brute force, and LCM are in '09. Basic_Math\05_GCDAndLCM.cs'.)
+	// (Loop version, brute force, and LCM are in '09. Basic Math\05_GCDAndLCM.cs'.)
 	// T.C: O(log(min(a, b)))
 	// S.C: O(log(min(a, b)));   recursion stack
 	public int GCD(int a, int b)
@@ -89,7 +89,7 @@ public class Solution
 	// Note: double can't store some decimals exactly. e.g., MyPow(10, -2) prints 0.010000000000000002, not 0.01,
 	//       because 0.1 has no exact binary form (like 1/3 = 0.333... has no exact decimal form). Leetcode accepts such
 	//       tiny differences.
-	// (Loop version: '09. Basic_Math\02_PowXN.cs'.)
+	// (Loop version: '09. Basic Math\02_PowXN.cs'.)
 	// T.C: O(logn)
 	// S.C: O(logn);   recursion stack
 	public double MyPow(double x, int n)

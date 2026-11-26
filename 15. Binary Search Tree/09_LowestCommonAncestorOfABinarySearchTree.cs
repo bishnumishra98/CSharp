@@ -18,7 +18,7 @@
 // Input: same tree, p = 2, q = 4
 // Output: 2   (4 is below 2, and 2 counts as below itself)
 
-// For ANY binary tree, see '14. Binary_Tree/16_LowestCommonAncestorOfABinaryTree.cs' (O(n), it must search both sides).
+// For ANY binary tree, see '14. Binary Tree/16_LowestCommonAncestorOfABinaryTree.cs' (O(n), it must search both sides).
 // In a BST the values tell us which side to go, so we only walk ONE path.
 
 

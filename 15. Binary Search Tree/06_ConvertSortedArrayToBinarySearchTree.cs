@@ -64,7 +64,7 @@ public class Solution
 
 class Program
 {
-	// Level order as text, only to print the tree (see '14. Binary_Tree/02_BinaryTreeTraversals.cs').
+	// Level order as text, only to print the tree (see '14. Binary Tree/02_BinaryTreeTraversals.cs').
 	static string LevelOrder(TreeNode root)
 	{
 		List<string> levels = new List<string>();

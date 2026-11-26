@@ -25,7 +25,7 @@ public class ListNode
 public class Solution
 {
 	// Brute force: Copy the values into a List, then check it with two pointers.
-	// (Same check as '04. Fundamental_Programs\06_PalindromeString.cs'.)
+	// (Same check as '04. Fundamental Programs\06_PalindromeString.cs'.)
 	// T.C: O(n)
 	// S.C: O(n);   for the List
 	public bool IsPalindrome_List(ListNode head)

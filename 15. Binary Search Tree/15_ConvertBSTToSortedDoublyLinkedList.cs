@@ -12,7 +12,7 @@
 // Output: 5 <-> 50 <-> 60 <-> 100 <-> 200 <-> 300
 
 // Sorted order of a BST = its inorder (see '01_BSTIntroduction.cs'). For a doubly linked list, see
-// '11. Linked_List/04_DoublyLinkedList.cs'.
+// '11. Linked List/04_DoublyLinkedList.cs'.
 
 
 using System;

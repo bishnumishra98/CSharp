@@ -12,7 +12,7 @@
 
 // Problem link: https://www.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1
 
-// The classic ACTIVITY SELECTION problem. The intervals problems in '21. Intervals_&_SweepLine' build on it.
+// The classic ACTIVITY SELECTION problem. The intervals problems in '21. Intervals & SweepLine' build on it.
 
 
 using System;

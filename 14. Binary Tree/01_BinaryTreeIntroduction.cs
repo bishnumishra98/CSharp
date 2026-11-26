@@ -35,7 +35,7 @@
 //   IV.  Balanced binary tree: for every node, the heights of its left and right subtrees differ by at most 1.
 //   V.   Skewed tree: every node has only one child (all left or all right). It looks like a linked list, so its
 //        height = n. This is the WORST case for most tree algorithms.
-//   VI.  Binary Search Tree (BST): left subtree < node < right subtree, for every node. (See '15. Binary_Search_Tree'.)
+//   VI.  Binary Search Tree (BST): left subtree < node < right subtree, for every node. (See '15. Binary Search Tree'.)
 
 // ● Why the recursion stack in tree problems is O(h):
 //   A recursive function goes down one path at a time, so at most h calls are waiting at once (h = height).

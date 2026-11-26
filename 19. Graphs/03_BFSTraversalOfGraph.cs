@@ -1,6 +1,6 @@
 // BFS (Breadth First Search) of a Graph   --->   Visit the nodes LEVEL by LEVEL: first the start node, then all its
 // neighbours, then all THEIR new neighbours, and so on. Like the level order traversal of a tree
-// ('14. Binary_Tree/02_BinaryTreeTraversals.cs'), but a graph can have cycles, so we must remember VISITED nodes.
+// ('14. Binary Tree/02_BinaryTreeTraversals.cs'), but a graph can have cycles, so we must remember VISITED nodes.
 
 // Example 1:
 // Input: n = 5, adj = [[1,2,3], [], [4], [], []]   (directed: 0 -> 1, 2, 3 and 2 -> 4)

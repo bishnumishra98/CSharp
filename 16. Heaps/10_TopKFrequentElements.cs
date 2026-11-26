@@ -12,7 +12,7 @@
 
 // Note: The C++ file for this problem was empty (only the title). This solution is new.
 
-// Step 1 for every approach: count each value with a Dictionary {value -> count} (see '01. CSharp_Program/17_Dictionary.cs').
+// Step 1 for every approach: count each value with a Dictionary {value -> count} (see '01. C# Program/17_Dictionary.cs').
 // Let m = the number of DIFFERENT values (m <= n).
 
 

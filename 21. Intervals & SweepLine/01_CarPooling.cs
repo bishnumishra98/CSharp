@@ -11,7 +11,7 @@
 //
 // ● The events must be visited in sorted order: sort them, or keep them in a SortedDictionary (a C# sorted map). When the
 //   positions are small whole numbers, a plain array indexed by position works too (a "difference array"), with no sort.
-// ● '20. Greedy_Algorithm/10_MinimumPlatforms.cs' uses the same idea with two sorted lists.
+// ● '20. Greedy Algorithm/10_MinimumPlatforms.cs' uses the same idea with two sorted lists.
 
 // Leetcode: 1094. Car Pooling   --->   A car with 'capacity' seats only drives east. trips[i] = [passengers, from, to]:
 // pick up 'passengers' at km 'from', drop them at km 'to'. Return true if every trip fits without going over capacity.

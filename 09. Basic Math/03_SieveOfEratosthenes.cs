@@ -8,11 +8,11 @@
 // Input: n = 10
 // Output: 2 3 5 7
 
-// Problem with checking every number one by one with IsPrime() (from '04. Fundamental_Programs\08_PrimeNumber.cs'):
+// Problem with checking every number one by one with IsPrime() (from '04. Fundamental Programs\08_PrimeNumber.cs'):
 // It costs O(sqrt(n)) per number, so O(n * sqrt(n)) in total.
 // Solution (Sieve): Instead of checking each number, CROSS OUT the multiples of every prime. Whatever is never crossed
 // out is prime. (A "sieve" is a strainer that lets small things through and keeps the rest.)
-// (Leetcode 204. Count Primes uses exactly this, see '04. Fundamental_Programs\09_CountPrimes.cs'.)
+// (Leetcode 204. Count Primes uses exactly this, see '04. Fundamental Programs\09_CountPrimes.cs'.)
 
 
 using System;

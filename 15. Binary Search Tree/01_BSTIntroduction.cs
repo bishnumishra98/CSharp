@@ -83,7 +83,7 @@ public class Solution
 
 // ------------------------------------------------------------------------------
 
-	// Inorder traversal (see '14. Binary_Tree/02_BinaryTreeTraversals.cs'). For a BST the result is sorted.
+	// Inorder traversal (see '14. Binary Tree/02_BinaryTreeTraversals.cs'). For a BST the result is sorted.
 	// T.C: O(n)
 	// S.C: O(h)
 	public List<int> InOrder(TreeNode root)

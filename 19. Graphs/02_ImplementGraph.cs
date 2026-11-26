@@ -1,5 +1,5 @@
 // Implement a Graph class   --->   A reusable graph whose nodes can be ANY type (int, char, string ...), not only 0..n-1.
-// The adjacency list is a Dictionary {node -> list of its neighbours} (see '01. CSharp_Program/17_Dictionary.cs').
+// The adjacency list is a Dictionary {node -> list of its neighbours} (see '01. C# Program/17_Dictionary.cs').
 //
 // Example (undirected):
 //        a

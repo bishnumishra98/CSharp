@@ -23,7 +23,7 @@
 //   - () => "Hi"                                // takes nothing, returns "Hi"
 //   - x => { int y = x * 2; return y + 1; }     // more than 1 line needs { } and 'return'
 //
-//   A lambda can be stored in Func<> or Action<>. Both are built-in delegates (see 01. CSharp_Program/14_Delegates.cs).
+//   A lambda can be stored in Func<> or Action<>. Both are built-in delegates (see 01. C# Program/14_Delegates.cs).
 //   - Func<...>   : returns a value. The LAST type is the return type.
 //                   Func<int, int> square = x => x * x;           // takes int, returns int
 //                   Func<int, int, int> add = (a, b) => a + b;    // takes (int, int), returns int

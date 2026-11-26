@@ -1,6 +1,6 @@
 // Greedy Algorithm   --->   Build the answer step by step, and at EVERY step take the choice that looks best RIGHT NOW,
 // without ever going back. Simple and fast, but it only works when "best now" really leads to "best overall" (this must
-// be argued for each problem). When it does not, DP is needed (e.g., '18. Dynamic_Programming/26_CoinChange.cs': greedy
+// be argued for each problem). When it does not, DP is needed (e.g., '18. Dynamic Programming/26_CoinChange.cs': greedy
 // fails for coins [1, 3, 4] and amount 6).
 // Many greedy solutions start by SORTING, so that the "best next choice" is simply the next element.
 

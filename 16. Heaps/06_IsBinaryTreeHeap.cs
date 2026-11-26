@@ -37,7 +37,7 @@ public class TreeNode
 public class Solution
 {
 	// Algorithm: Check the 2 rules separately.
-	// I.  Complete: exactly '14. Binary_Tree/12_CheckCompletenessOfABinaryTree.cs'. Level order, pushing null children
+	// I.  Complete: exactly '14. Binary Tree/12_CheckCompletenessOfABinaryTree.cs'. Level order, pushing null children
 	//     too. Once a null is seen, no real node may come after it.
 	// II. Heap order: DFS. At every node, check it is >= its left and right child (if they exist), then check both
 	//     subtrees.

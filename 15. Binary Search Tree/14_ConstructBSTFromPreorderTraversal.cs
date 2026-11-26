@@ -20,7 +20,7 @@
 // Output: [4,2,6,1,3,5,7]
 
 // Why does preorder ALONE give one BST, when a normal binary tree also needed the inorder
-// ('14. Binary_Tree/20_ConstructBinaryTreeFromPreorderAndInorderTraversal.cs') ? For a BST the inorder is just the
+// ('14. Binary Tree/20_ConstructBinaryTreeFromPreorderAndInorderTraversal.cs') ? For a BST the inorder is just the
 // sorted values, so we already know it.
 
 
@@ -104,7 +104,7 @@ public class Solution
 
 class Program
 {
-	// Level order as text, only to print the tree (see '14. Binary_Tree/02_BinaryTreeTraversals.cs').
+	// Level order as text, only to print the tree (see '14. Binary Tree/02_BinaryTreeTraversals.cs').
 	static string LevelOrder(TreeNode root)
 	{
 		List<string> levels = new List<string>();

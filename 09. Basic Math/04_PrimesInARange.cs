@@ -22,7 +22,7 @@ using System.Collections.Generic;
 public class Solution
 {
 	// Brute force: Check every number from left to right with IsPrime() (only up to sqrt(x), see
-	// '04. Fundamental_Programs\08_PrimeNumber.cs').
+	// '04. Fundamental Programs\08_PrimeNumber.cs').
 	// T.C: O((right - left) * sqrt(right))
 	// S.C: O(1);   ignoring the answer list
 	public List<int> PrimesInRange_BruteForce(int left, int right)

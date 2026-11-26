@@ -11,7 +11,7 @@
 
 // Problem link: https://www.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1
 
-// Compare with '18. Dynamic_Programming/24_01Knapsack.cs': there items can NOT be cut, and greedy fails. Here they can,
+// Compare with '18. Dynamic Programming/24_01Knapsack.cs': there items can NOT be cut, and greedy fails. Here they can,
 // and greedy is exactly right.
 
 

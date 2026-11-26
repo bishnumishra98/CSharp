@@ -6,7 +6,7 @@
 
 // For 2 sorted arrays, 2 pointers are enough (the merge step of '07. Sorting/04_MergeSort.cs'). For k arrays, we would
 // need k pointers, and finding the smallest of k fronts costs O(k) each time. A min heap finds it in O(log k).
-// (Same idea as '11. Linked_List/23_MergeKSortedLists.cs', with arrays instead of lists.)
+// (Same idea as '11. Linked List/23_MergeKSortedLists.cs', with arrays instead of lists.)
 // Let N = the total number of elements.
 
 

@@ -73,7 +73,7 @@ public class Solution
 // ------------------------------------------------------------------------------
 
 	// Optimal version: Use only int, and check for overflow BEFORE it happens (same idea as
-	// '04. Fundamental_Programs\18_ReverseAnInteger.cs').
+	// '04. Fundamental Programs\18_ReverseAnInteger.cs').
 	// 'result * 10 + digit' goes above int.MaxValue exactly when result > (int.MaxValue - digit) / 10.
 	// If that happens, return int.MaxValue for a positive number, and int.MinValue for a negative one.
 	// (For a negative number, -2147483648 also lands here, and returning int.MinValue is exactly right.)

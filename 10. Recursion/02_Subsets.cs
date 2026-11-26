@@ -69,7 +69,7 @@ public class Solution
 	//       For [6, 7, 8]:  mask 101 -> bits 0 and 2 are set -> pick nums[0] and nums[2] -> [6, 8]
 	//                       mask 000 -> []      mask 111 -> [6, 7, 8]
 	//       So the 2^n masks give exactly the 2^n subsets.
-	// (mask & (1 << i)) != 0 checks if bit i is set. (See '04. Fundamental_Programs\16_SetKthBit.cs'.)
+	// (mask & (1 << i)) != 0 checks if bit i is set. (See '04. Fundamental Programs\16_SetKthBit.cs'.)
 	// T.C: O(2^n * n)
 	// S.C: O(1);   ignoring the answer
 	public IList<IList<int>> Subsets(int[] nums)
