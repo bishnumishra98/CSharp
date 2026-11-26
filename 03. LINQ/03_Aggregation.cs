@@ -92,21 +92,48 @@ class Program
 
 		// ---------------- Aggregate ----------------
 
+		// I. Product of all numbers (there is no built-in Product(), so Aggregate does it).
+		//    nums = { 5, 3, 8, 1, 4 }. No seed, so acc starts as the 1st item (5), and the loop starts from the 2nd item:
+		//      acc = 5
+		//      n = 3:  acc = 5 * 3   = 15
+		//      n = 8:  acc = 15 * 8  = 120
+		//      n = 1:  acc = 120 * 1 = 120
+		//      n = 4:  acc = 120 * 4 = 480   <- the last acc is the answer
 		int product = nums.Aggregate((acc, n) => acc * n);   // 5 -> 15 -> 120 -> 120 -> 480
 		Console.WriteLine(product);   // o/p: 480
 
+		// II. Biggest number, written by hand (our own Max()).
+		//     The accumulator can have any name. Here it is called 'max' because it holds the biggest number seen so far.
+		//     For every n: if n is bigger than max, n becomes the new max, otherwise max stays.
+		//       max = 5  ->  3 > 5 ? no (5)  ->  8 > 5 ? yes (8)  ->  1 > 8 ? no (8)  ->  4 > 8 ? no (8)
 		int biggest = nums.Aggregate((max, n) => n > max ? n : max);   // our own Max()
 		Console.WriteLine(biggest);   // o/p: 8
 
+		// III. Factorial of 5 = 1 * 2 * 3 * 4 * 5.
+		//      Enumerable.Range(start, count) makes the numbers to multiply: 'count' numbers starting from 'start'.
+		//      Then it is the same product as I:  1 -> 2 -> 6 -> 24 -> 120
 		int factorial = Enumerable.Range(1, 5).Aggregate((acc, n) => acc * n);   // Range(1, 5) gives 1, 2, 3, 4, 5
 		Console.WriteLine(factorial);   // o/p: 120
 
+		// IV. Join all names into one string, with " | " between them.
+		//     Why Select first ? Without a seed, acc has the SAME type as the items. The items must be strings to build a
+		//     string, so Select turns each Employee into its name first.
+		//       acc = "Bishnu"  ->  "Bishnu | Rahul"  ->  "Bishnu | Rahul | Amit"  ->  ...
+		//     Note: In real code, string.Join(" | ", names) does this more simply and faster (no new string at every step).
 		string allNames = employees.Select(e => e.EmployeeName).Aggregate((acc, name) => acc + " | " + name);
 		Console.WriteLine(allNames);   // o/p: "Bishnu | Rahul | Amit | Priya | Karan | Sneha | Neha | Arjun"
 
-		// With seed: acc starts at 0 (decimal), and each Employee's salary is added to it
+		// V. Total salary, with a SEED.
+		//    The items are Employees, but the answer is a decimal. Without a seed, acc would start as the 1st Employee, and
+		//    'Employee + decimal' makes no sense. So we give a starting value (seed) of the answer's type: 0m.
+		//      acc = 0  ->  0 + 1200000 (Bishnu) = 1200000  ->  1200000 + 800000 (Rahul) = 2000000  ->  ...  -> 9400000
+		//    - Why 0m and not 0 ? The seed decides acc's type. 0 is an int, and 'int + decimal' gives a decimal, which can
+		//      not be stored back into an int acc: compile error. 'm' makes it a decimal.
+		//    - With a seed, the loop starts from the 1st item (not the 2nd), because acc already has a value.
+		//    - Bonus: with a seed, an EMPTY list just returns the seed. Without a seed, an empty list THROWS
+		//      InvalidOperationException (there is no 1st item to start acc with).
 		decimal total = employees.Aggregate(0m, (acc, e) => acc + e.Salary);
-		Console.WriteLine(total);   // o/p: 9400000
+		Console.WriteLine(total);   // o/p: 9400000   (same as employees.Sum(e => e.Salary))
 
 		// ---------------- Empty collection ----------------
 
@@ -124,7 +151,19 @@ class Program
 			Console.WriteLine(ex.Message);   // o/p: "Sequence contains no elements"
 		}
 
+		// Two ways to avoid the crash:
+
+		// I. DefaultIfEmpty(value): If the list is empty, it gives back a list with just ONE item: 'value'.
+		//    If the list is NOT empty, it gives back the list as it is (the value is NOT added).
+		//      empty         -> DefaultIfEmpty(0) -> { 0 }        -> Max() = 0
+		//      { 5, 3, 8 }   -> DefaultIfEmpty(0) -> { 5, 3, 8 }  -> Max() = 8
+		//    Careful: the answer 0 can mean "empty list" OR "the biggest number really is 0". You can not tell them apart.
 		Console.WriteLine(empty.DefaultIfEmpty(0).Max());   // o/p: 0
+
+		// II. Any(): true if the list has at least one item.
+		//     condition ? a : b  (ternary operator): if the condition is true, the answer is a, otherwise b.
+		//     So: if the list has items, take its Max(), otherwise use -1. Max() is only called when it is safe.
+		//     Here we choose the value to use for "no items" (-1), so pick one that can not be a real answer.
 		Console.WriteLine(empty.Any() ? empty.Max() : -1);  // o/p: -1
 	}
 }
