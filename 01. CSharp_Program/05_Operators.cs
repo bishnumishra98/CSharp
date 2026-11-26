@@ -102,8 +102,9 @@ if (arr.Length > 0 && arr[0] == 1)   // arr[0] is never read, because arr.Length
 Console.WriteLine("No crash");               // o/p: "No crash"
 
 int count = 0;
-bool result = false && ++count > 0;   // ++count never runs
-Console.WriteLine(count);                    // o/p: "0"
+bool isReady = false;
+bool result = isReady && ++count > 0;   // isReady is false, so ++count never runs
+Console.WriteLine(result + " " + count);     // o/p: "False 0"
 
 
 // ● Bitwise Operators: These operators are used to perform bit-level operations on integer values. The common bitwise operators in C# are:
