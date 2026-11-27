@@ -123,7 +123,17 @@ class Program
 		Console.WriteLine(employees.All(e => e.Salary > 500000));        // o/p: True
 		Console.WriteLine(employees.All(e => e.Salary > 1000000));       // o/p: False
 
+		// All() on an EMPTY list is always True, whatever the condition is (this surprises many people).
+		//   new List<int>() makes an empty list, so there is no number to check against "n > 100".
+		//   All() works like this: "is there any item that BREAKS the rule ? If not, answer True."
+		//   In an empty list no item breaks the rule (there are no items at all), so the answer is True.
+		//   e.g., "All students in an empty classroom are wearing a red shirt" is True: you can not point
+		//   to anyone who is not.
+		//   (In maths this is called "vacuous truth".)
+		// Any() is the opposite: on an empty list it is always False, because no item matches.
+		// So if "empty" should mean False in your code, check both:  list.Any() && list.All(n => n > 100)
 		Console.WriteLine(new List<int>().All(n => n > 100));            // o/p: True   (empty: nothing breaks the rule)
+		Console.WriteLine(new List<int>().Any(n => n > 100));            // o/p: False  (empty: nothing matches)
 
 		// ---------------- Contains ----------------
 
